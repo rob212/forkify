@@ -1,0 +1,23 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "Forkify project to search recipes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rob212/forkify.git"
+  },
+  "author": "Rob McBryde",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rob212/forkify/issues"
+  },
+  "homepage": "https://github.com/rob212/forkify#readme",
+  "devDependencies": {
+    "webpack": "^4.41.6"
+  },
+  "dependencies": {}
+}
