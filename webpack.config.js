@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // This is the config file for bundling our js files together into one js file to be used to deploy 
 module.exports = {
     // this is the location of our js we would like to be bundled
-    entry: './src/js/index.js',
+    entry: ['./src/js/index.js'],
     output: {
         // this is the absolute path of where the bundled code should be placed by webpack
         path: path.resolve(__dirname, 'dist'),
@@ -30,6 +30,22 @@ module.exports = {
             filename: 'index.html',
             template: './src/index.html'
         })
-    ]
+    ],
+
+    // loaders in Webpack allow us to load and process files. E.g. convert Sass to css or converting ES6 to Es5
+    // We are using the babel loader for this
+    module: {
+        rules: [
+            {
+                // regex to find all .js files
+                test: /\.js$/,
+                // do not convert anything in the node_modules folder
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
+                }
+            }
+        ]
+    }
 };
 
