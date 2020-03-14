@@ -3,6 +3,7 @@ import Search from './models/Search';
 import Recipe from './models/Recipe';
 import { elements, renderLoadingSpinner, clearLoadingSpinner } from './views/base';
 import * as searchView from './views/searchView';
+import * as recipeView from './views/recipeView';
 
 /**
  * Global state of the app
@@ -69,21 +70,25 @@ const controlRecipe = async () => {
 
     if (id) {
         // prepare the UI for changes
+        recipeView.clearRecipe();
+        renderLoadingSpinner(elements.recipe);
         
         // Create a new Recipe object 
         state.recipe = new Recipe(id);
 
-        // Get the recipe data
+        // Get the recipe data and parse ingredients
         try {
             await state.recipe.getRecipe();
-
+            state.recipe.parseIngredients();
             
             // Calculate servings and time
             state.recipe.calcServings();
             state.recipe.calcTime();
             
             // Render the recipe
-            console.log(state.recipe);
+            clearLoadingSpinner();
+            recipeView.renderRecipe(state.recipe);
+
         } catch (error) {
             alert(`Error processing recipe: ${error}`);
         }
@@ -91,4 +96,4 @@ const controlRecipe = async () => {
 };
 
 // Add event listener for page load and URL hash change 
-['haschange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
