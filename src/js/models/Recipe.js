@@ -13,8 +13,6 @@ export default class Recipe {
             this.image = result.data.recipe.image_url;
             this.url = result.data.recipe.source_url;
             this.ingredients = result.data.recipe.ingredients;
-            this.calcTime();
-            this.calcServings();
         } catch (error) {
             console.log(error);
             alert('Something went wrong :(');
