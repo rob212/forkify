@@ -100,3 +100,20 @@ const controlRecipe = async () => {
 
 // Add event listener for page load and URL hash change 
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
+
+// Handling Recipe serving button clicks or like button using matches event listener 
+elements.recipe.addEventListener('click', e => {
+    // true if btn decrease or any of its children are clicked e.g. text on the button
+    if (e.target.matches('.btn-decrease, .btn-decrease *')) {
+        // Decrease serving button is clicked
+        if (state.recipe.servings > 1) {
+            state.recipe.updateServings('dec');
+            recipeView.updateServingsIngredients(state.recipe);
+        }
+    } else if (e.target.matches('.btn-increase, .btn-increase *')) {
+        // Increase serving button is clicked
+        state.recipe.updateServings('inc');
+        recipeView.updateServingsIngredients(state.recipe);
+    }
+    console.log(state.recipe);
+});
