@@ -17,7 +17,7 @@ export const highlightedSelected = id => {
         el.classList.remove('results__link--active');
     });
 
-    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+    document.querySelector(`.results__link[href="#${id}"]`).classList.add('results__link--active');
 };
 
 export const limitRecipeTitle = (title, limit = 17) => {
