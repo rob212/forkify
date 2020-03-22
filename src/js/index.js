@@ -144,7 +144,6 @@ elements.shoppingList.addEventListener('click', e => {
 /**
  * LIKES CONTROLLER 
  */
-// testing only temp
 
 const controlLike = () => {
     if (!state.likes) state.likes = new Likes();
